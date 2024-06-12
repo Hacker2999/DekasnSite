@@ -1,0 +1,74 @@
+﻿@model IEnumerable<DekasnSite.Models.Grade>
+
+@{
+    ViewBag.Title = "Grades";
+}
+
+<h2>Grades</h2>
+
+<p class="button">
+    @Html.ActionLink("Create New", "Create")
+</p>
+<p class="button">
+    @Html.ActionLink("Export to Excel", "ExportToExcel", null, new { })
+</p>
+<p class="button">
+    @Html.ActionLink("Export to Word", "ExportToWord", null, new { })
+</p>
+@using (Html.BeginForm())
+{<p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Discipline", "Index", new { sortOrder = ViewBag.DisciplineParm })
+        </th>
+        <th>
+            @Html.ActionLink("Grade", "Index", new { sortOrder = ViewBag.GradeParm })
+        </th>
+        <th>
+            @Html.ActionLink("GradeDate", "Index", new { sortOrder = ViewBag.GradeDateParm })
+        </th>
+        <th>
+            @Html.ActionLink("StudentName", "Index", new { sortOrder = ViewBag.StudentName })
+        </th>
+        <th>
+            @Html.ActionLink("TeacherName", "Index", new { sortOrder = ViewBag.TeacherName })
+        </th>
+        <th></th>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discipline)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Grade1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GradeDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Teacher.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID_Grade }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID_Grade }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID_Grade })
+            </td>
+        </tr>
+    }
+
+</table>
+<div>
+    <p>Количество строк: @Model.Count()</p>
+</div>

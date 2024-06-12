@@ -1,0 +1,70 @@
+﻿@model IEnumerable<DekasnSite.Models.Application>
+
+@{
+    ViewBag.Title = "Applications";
+
+}
+
+<h2>Applications</h2>
+
+<p class="button">
+    @Html.ActionLink("Create New", "Create")
+</p>
+<p class="button">
+    @Html.ActionLink("Export to Excel", "ExportToExcel", null, new { })
+</p>
+<p class="button">
+   @Html.ActionLink("Export to Word", "ExportToWord", null, new { })
+</p>
+@using (Html.BeginForm())
+{<p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Application_type", "Index", new { sortOrder = ViewBag.Application_TypeParm })
+        </th>
+        <th>
+            @Html.ActionLink("Submission Date", "Index", new { sortOrder = ViewBag.SubmissionDateParm })
+        </th>
+        <th>
+            @Html.ActionLink("Status", "Index", new { sortOrder = ViewBag.StatusParm })
+        </th>
+        <th>
+            @Html.ActionLink("TeacherName", "Index", new { sortOrder = ViewBag.TeacherName })
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubmissionDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Teacher.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID_Application }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID_Application }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID_Application })
+            </td>
+        </tr>
+    }
+
+</table>
+<div>
+    <p>Количество строк: @Model.Count()</p>
+</div>

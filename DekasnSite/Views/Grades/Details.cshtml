@@ -1,0 +1,58 @@
+﻿@model DekasnSite.Models.Grade
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Grade</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Discipline)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Discipline)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Grade1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Grade1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GradeDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GradeDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Student.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Student.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Teacher.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Teacher.Name)
+        </dd>
+
+    </dl>
+</div>
+<p class="button">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Grade }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

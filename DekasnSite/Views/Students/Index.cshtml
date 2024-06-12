@@ -1,0 +1,96 @@
+﻿@model IEnumerable<DekasnSite.Models.Student>
+
+@{
+    ViewBag.Title = "Students";
+}
+
+<h2>Students</h2>
+
+<p class="button">
+    @Html.ActionLink("Create New", "Create")
+</p>
+<p class="button">
+    @Html.ActionLink("Export to Excel", "ExportToExcel", null, new { })
+</p>
+<p class="button">
+    @Html.ActionLink("Export to Word", "ExportToWord", null, new { })
+</p>
+@using (Html.BeginForm())
+{<p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameParm })
+        </th>
+        <th>
+            @Html.ActionLink("Surname", "Index", new { sortOrder = ViewBag.SurnameParm })
+        </th>
+        <th>
+            @Html.ActionLink("GroupName", "Index", new { sortOrder = ViewBag.GroupNameParm })
+        </th>
+        <th>
+            @Html.ActionLink("Course", "Index", new { sortOrder = ViewBag.CourseParm })
+        </th>
+        <th>
+            @Html.ActionLink("BirthDate", "Index", new { sortOrder = ViewBag.BirthDateParm })
+        </th>
+        <th>
+            @Html.ActionLink("ContactNumber", "Index", new { sortOrder = ViewBag.ContactNumberParm })
+        </th>
+        <th>Photo</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GroupName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactNumber)
+            </td>
+            <td>
+                @{ byte[] photo = item.Photo;
+                    string imageSrc = null;
+                    if (photo != null)
+                    {
+                        MemoryStream ms = new MemoryStream();
+                        ms.Write(photo, 0, photo.Length);
+                        string imageBase64 = Convert.ToBase64String(ms.ToArray());
+                        imageSrc = string.Format("data:image/jpg;base64,{0}", imageBase64);
+                        string base64String = Convert.ToBase64String(photo, 0, photo.Length);
+                    }
+                }
+
+                <img src="@imageSrc" alt="Image" width="150" height="100" />
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID_Student }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID_Student }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID_Student })
+            </td>
+        </tr>
+    }
+
+</table>
+<div>
+    <p>Количество строк: @Model.Count()</p>
+</div>

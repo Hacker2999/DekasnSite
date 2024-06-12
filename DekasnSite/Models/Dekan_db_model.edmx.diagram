@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a6d9b024987141a79afedcc943589d05" Name="Diagram1">
+        <EntityTypeShape EntityType="Dekan_dbModel.Application" Width="1.5" PointX="0.5" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="Dekan_dbModel.Document" Width="1.5" PointX="10.875" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Dekan_dbModel.Grade" Width="1.5" PointX="5.5" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Dekan_dbModel.Student" Width="1.5" PointX="8.5" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Dekan_dbModel.Teacher" Width="1.5" PointX="3.125" PointY="1.875" IsExpanded="true" />
+        <AssociationConnector Association="Dekan_dbModel.FK__Applicati__Respo__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="Dekan_dbModel.FK__Documents__Autho__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="Dekan_dbModel.FK__Grades__StudentI__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="Dekan_dbModel.FK__Grades__TeacherI__52593CB8" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

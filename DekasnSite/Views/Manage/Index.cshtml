@@ -1,0 +1,73 @@
+﻿@model DekasnSite.Models.IndexViewModel
+@using System.Security.Claims
+@using System.Security.Principal
+@{
+    ViewBag.Title = "Управление";
+}
+
+<main aria-labelledby="title">
+    <h2 id="title">@ViewBag.Title.</h2>
+
+    <p class="text-success">@ViewBag.StatusMessage</p>
+    <div>
+        <div>
+            <h4>Изменение параметров учетной записи</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>Почта пользователя:</dt>
+                <dd>@User.Identity.Name</dd>
+            </dl>
+        </div>
+        <h4>Изменение параметров учетной записи</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>Пароль:</dt>
+            <dd>
+                [
+                @if (Model.HasPassword)
+                {
+                    @Html.ActionLink("Смена пароля", "ChangePassword")
+                }
+                else
+                {
+                    @Html.ActionLink("Создать", "SetPassword")
+                }
+                ]
+            </dd>
+            <dt>Внешние имена входа:</dt>
+            <dd>
+                @Model.Logins.Count [
+                @Html.ActionLink("Manage", "ManageLogins") ]
+            </dd>
+            @*
+                Номера телефонов можно использовать в качестве второго проверочного фактора для системы двухфакторной проверки подлинности.
+
+                В <a href="https://go.microsoft.com/fwlink/?LinkId=403804">этой статье</a>
+                    можно узнать, как для этого приложения ASP.NET настроить двухфакторную проверку подлинности с использованием SMS.
+
+                Настроив двухфакторную проверку подлинности, раскомментируйте следующий блок
+            *@
+            @*
+                <dt>Номер телефона:</dt>
+                <dd>
+                    @(Model.PhoneNumber ?? "None")
+                    @if (Model.PhoneNumber != null)
+                    {
+                        <br />
+                        <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
+                        using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <text>[<input type="submit" value="Удалить" class="btn-link" />]</text>
+                        }
+                    }
+                    else
+                    {
+                        <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
+                    }
+                </dd>
+            *@
+
+        </dl>
+    </div>
+</main>
